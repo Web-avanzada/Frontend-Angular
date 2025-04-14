@@ -1,0 +1,41 @@
+<div class="login-container">
+    <div class="left-panel">
+      <!-- Aquí va tu imagen -->
+      <img src="assets/tu-imagen.jpg" alt="StudyHub" class="background-image" />
+    </div>
+  
+    <div class="right-panel">
+      <div class="logo">
+        <img src="assets/logo.jpg" alt="StudyHub" />
+        <h2>StudyHub</h2>
+      </div>
+  
+      <h3>Nice to see you again</h3>
+  
+      <form (ngSubmit)="login()">
+        <input type="text" [(ngModel)]="emailOrPhone" name="emailOrPhone" placeholder="Email or phone number" required />
+        
+        <div class="password-field">
+          <input [type]="showPassword ? 'text' : 'password'" [(ngModel)]="password" name="password" placeholder="Enter password" required />
+          <button type="button" (click)="showPassword = !showPassword">👁️</button>
+        </div>
+  
+        <div class="remember-forgot">
+          <label>
+            <input type="checkbox" [(ngModel)]="rememberMe" name="rememberMe" />
+            Remember me
+          </label>
+          <a href="#">Forgot password?</a>
+        </div>
+  
+        <button type="submit" class="btn-login">Sign in</button>
+  
+        <div class="divider">or</div>
+  
+        <button type="button" class="btn-google">🔴 Or sign in with Google</button>
+  
+        <p>Don’t have an account? <a href="#">Sign up now</a></p>
+      </form>
+    </div>
+  </div>
+  
