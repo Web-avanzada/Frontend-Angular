@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';  // Asegúrate de importar RouterOutlet
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',  // Asegúrate de que el template tenga el <router-outlet>
-  styleUrls: ['./app.component.css'],
-  imports: [RouterOutlet] // Asegúrate de importar RouterOutlet
+  standalone: true,
+  imports: [RouterOutlet],
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'frontWebAvanzada'; // O cualquier título que desees
+  title = 'frontWebAvanzada';
 }

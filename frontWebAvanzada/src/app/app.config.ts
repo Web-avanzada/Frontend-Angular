@@ -1,11 +1,11 @@
 import { ApplicationConfig } from '@angular/core';
 import { provideRouter } from '@angular/router';
-import { LoginComponent } from './Auth/login/login.component'; // Asegúrate de importar el LoginComponent
+import { LoginPageComponent } from './Pages/login-page/login-page.component';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter([
-      { path: '', component: LoginComponent }, // Ruta raíz apunta a LoginComponent
+      { path: '', component: LoginPageComponent },
     ])
   ]
 };
