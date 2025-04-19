@@ -1,4 +1,4 @@
 class Occupation {
-    occupation_id: number = 0;
-    occupation_name: string = "";
+    OccupationId: number = 0;
+    OccupationName: string = "";
   }

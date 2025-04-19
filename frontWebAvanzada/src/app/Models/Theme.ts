@@ -1,4 +1,4 @@
 class Theme {
-    theme_id: number = 0;
-    theme_name: string = "";
-  }
+    ThemeId : number = 0;
+    ThemeName: string = "";
+  } 
