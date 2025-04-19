@@ -1,49 +1,21 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { jwtDecode } from "jwt-decode";
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+  private apiUrl = 'http://localhost:5074/userValidate'; // <-- tu endpoint real
 
-  private tokenKey = 'token';
+  constructor(private http: HttpClient) {}
 
-  constructor() { }
-
-  saveToken(token: string): void {
-    localStorage.setItem(this.tokenKey, token);
-  }
-
-  getToken(): string | null {
-    return localStorage.getItem(this.tokenKey);
-  }
-
-  getRoles(): string[] {
-    const token = this.getToken();
-    if (!token) return [];
-    const decodedToken: any = jwtDecode(token);
-    return decodedToken.roles || [];
-  }
-
-  hasRole(role: string): boolean {
-    const roles = this.getRoles();
-    return roles.includes(role);
-  }
-
-  hasAnyRole(roles: string[]): boolean {
-
-    const userRoles = this.getRoles();
-    return roles.some(role => userRoles.includes(role));
-  }
-
-  isAuthenticated(): Observable<boolean> {
-    const token = localStorage.getItem('token');
-    return of(!!token);
-  }
-
-
-  logout(): void {
-    localStorage.removeItem(this.tokenKey);
+  login(emailOrPhone: string, password: string): Observable<any> {
+    const body = {
+      emailOrPhone,
+      password
+    };
+  
+    return this.http.post(this.apiUrl, body);  // Hacer la petición POST con el cuerpo del formulario
   }
 }

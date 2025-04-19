@@ -1,16 +1,19 @@
-import { TestBed } from '@angular/core/testing';
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
-import { RoleGuardService } from './role-guard.service';
+@Injectable({ providedIn: 'root' })
+export class AuthService {
+  private apiUrl = 'http://localhost:5074/userValidate';
 
-describe('RoleGuardService', () => {
-  let service: RoleGuardService;
+  constructor(private http: HttpClient) {}
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({});
-    service = TestBed.inject(RoleGuardService);
-  });
+  login(emailOrPhone: string, password: string): Observable<any> {
+    const body = {
+      emailOrPhone,
+      password
+    };
 
-  it('should be created', () => {
-    expect(service).toBeTruthy();
-  });
-});
+    return this.http.post(this.apiUrl, body);
+  }
+}

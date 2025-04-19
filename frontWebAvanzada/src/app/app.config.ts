@@ -1,11 +1,13 @@
 import { ApplicationConfig } from '@angular/core';
 import { provideRouter } from '@angular/router';
-import { LoginPageComponent } from './Pages/login-page/login-page.component';
+import { provideHttpClient } from '@angular/common/http';
+import { LoginPageComponent } from './Pages/login-page/login-page.component'; // Verifica que la ruta sea correcta
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter([
-      { path: '', component: LoginPageComponent },
-    ])
+      { path: '', component: LoginPageComponent }  // Asegúrate de que esta ruta esté correcta
+    ]),
+    provideHttpClient()
   ]
 };
