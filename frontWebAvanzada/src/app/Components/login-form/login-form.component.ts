@@ -26,17 +26,21 @@ export class LoginFormComponent {
     const loginData = new LoginRequest();
     loginData.UserName = this.userName;
     loginData.UserPassword = this.userPassword;
-  
-    console.log('Enviando al backend:', loginData); // Para debug
-  
+
+    console.log('Enviando al backend:', loginData);
+
     this.authService.login(loginData).subscribe({
       next: (response) => {
         this.loginMessage = '✅ Inicio de sesión exitoso.';
         console.log(response);
       },
       error: (err) => {
-        this.loginMessage = '❌ Error al iniciar sesión. Verifica tus credenciales.';
         console.error(err);
+        if (err?.error === 'User not found') {
+          this.loginMessage = '❌ Usuario o contraseña incorrectos.'; // Mensaje consistente
+        } else {
+          this.loginMessage = '❌ Error al iniciar sesión. Verifica tus credenciales.'; // Mensaje genérico para otros errores
+        }
       }
     });
   }

@@ -7,7 +7,7 @@ import { LoginRequest } from '../Dtos/LoginRequest';
   providedIn: 'root'
 })
 export class AuthService {
-  private UrlUser: string = 'http://localhost:5074/userValidate';
+  private UrlUser: string = 'http://localhost:5074/userValidateLogin';
 
   constructor(private httpClient: HttpClient) {}
 
