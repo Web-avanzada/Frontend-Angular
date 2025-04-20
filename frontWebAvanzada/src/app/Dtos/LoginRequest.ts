@@ -1,4 +1,5 @@
-class LoginRequest {
-    UserName: number = 0;
-    UserPassword: string = "";
-}
+export class LoginRequest {
+    UserName: String = '';
+    UserPassword: string = '';
+  }
+  

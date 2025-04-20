@@ -1,38 +1,42 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { AuthService } from '../../Services/auth.service'; // ajusta si tu ruta es distinta
+import { CommonModule } from '@angular/common'; // 👈 Agregar esto
+import { AuthService } from '../../Services/auth.service';
+import { LoginRequest } from '../../Dtos/LoginRequest';
 
 @Component({
   selector: 'app-login-form',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, CommonModule], // 👈 Agregar aquí también
   templateUrl: './login-form.component.html',
   styleUrls: ['./login-form.component.css'],
   providers: [AuthService]
 })
 export class LoginFormComponent {
-  emailOrPhone = '';
-  password = '';
+  userName: string = '';
+  userPassword: string = '';
   rememberMe = false;
   showPassword = false;
 
+  loginMessage: string = ''; // Para mostrar mensaje en pantalla
+
   constructor(private authService: AuthService) {}
+
   login() {
-    console.log('🚀 Se ejecutó el método login');
+    const loginData = new LoginRequest();
+    loginData.UserName = this.userName;
+    loginData.UserPassword = this.userPassword;
   
-    const loginData = {
-      UserName: this.emailOrPhone,
-      UserPassword: this.password
-    };
+    console.log('Enviando al backend:', loginData); // Para debug
   
-    console.log('Datos enviados al servidor:', loginData);  // Agregar este log
-  
-    this.authService.login(loginData.UserName, loginData.UserPassword).subscribe({
-      next: (res) => {
-        console.log('Respuesta del servidor:', res);
+    this.authService.login(loginData).subscribe({
+      next: (response) => {
+        this.loginMessage = '✅ Inicio de sesión exitoso.';
+        console.log(response);
       },
       error: (err) => {
-        console.error('Error al iniciar sesión:', err);
+        this.loginMessage = '❌ Error al iniciar sesión. Verifica tus credenciales.';
+        console.error(err);
       }
     });
   }

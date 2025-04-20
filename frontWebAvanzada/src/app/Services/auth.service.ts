@@ -1,21 +1,17 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { LoginRequest } from '../Dtos/LoginRequest';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'http://localhost:5074/userValidate'; // <-- tu endpoint real
+  private UrlUser: string = 'http://localhost:5074/userValidate';
 
-  constructor(private http: HttpClient) {}
+  constructor(private httpClient: HttpClient) {}
 
-  login(emailOrPhone: string, password: string): Observable<any> {
-    const body = {
-      emailOrPhone,
-      password
-    };
-  
-    return this.http.post(this.apiUrl, body);  // Hacer la petición POST con el cuerpo del formulario
+  login(user: LoginRequest): Observable<string> {
+    return this.httpClient.post(this.UrlUser, user, { responseType: 'text' });
   }
 }
