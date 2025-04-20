@@ -19,15 +19,20 @@ export class LoginFormComponent {
   constructor(private authService: AuthService) {}
   login() {
     console.log('🚀 Se ejecutó el método login');
-
-    this.authService.login(this.emailOrPhone, this.password).subscribe({
+  
+    const loginData = {
+      UserName: this.emailOrPhone,
+      UserPassword: this.password
+    };
+  
+    console.log('Datos enviados al servidor:', loginData);  // Agregar este log
+  
+    this.authService.login(loginData.UserName, loginData.UserPassword).subscribe({
       next: (res) => {
         console.log('Respuesta del servidor:', res);
-        // Aquí podés guardar token o redirigir
       },
       error: (err) => {
         console.error('Error al iniciar sesión:', err);
-        // Mostrar mensaje de error al usuario
       }
     });
   }
