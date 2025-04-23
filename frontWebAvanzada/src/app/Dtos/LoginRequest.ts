@@ -1,4 +1,4 @@
 class LoginRequest {
-    UserName: number = 0;
+    UserMail: number = 0;
     UserPassword: string = "";
 }
