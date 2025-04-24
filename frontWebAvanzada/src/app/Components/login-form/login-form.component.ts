@@ -13,7 +13,7 @@ import { LoginRequest } from '../../Dtos/LoginRequest';
   providers: [AuthService]
 })
 export class LoginFormComponent {
-  userName: string = '';
+  userMail: string = '';
   userPassword: string = '';
   rememberMe = false;
   showPassword = false;
@@ -24,7 +24,7 @@ export class LoginFormComponent {
 
   login() {
     const loginData = new LoginRequest();
-    loginData.UserName = this.userName;
+    loginData.UserMail = this.userMail;
     loginData.UserPassword = this.userPassword;
 
     console.log('Enviando al backend:', loginData);
