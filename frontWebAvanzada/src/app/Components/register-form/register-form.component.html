@@ -1,0 +1,30 @@
+<form (ngSubmit)="register()">
+  <label>Email</label>
+  <input type="email" [(ngModel)]="email" name="email" placeholder="Email" required />
+
+  <label>Nombres y apellidos</label>
+  <input type="text" [(ngModel)]="fullName" name="fullName" placeholder="Nombre - Apellidos" required />
+
+  <label>Password</label>
+  <div class="password-field">
+    <input [type]="showPassword ? 'text' : 'password'" [(ngModel)]="password" name="password" placeholder="Enter password" required />
+    <button type="button" (click)="showPassword = !showPassword">{{ showPassword ? '🚫' : '👁️' }}</button>
+  </div>
+
+
+  <div class="role-selection">
+    <label>
+      <input type="checkbox" [checked]="isStudent" (change)="selectOnly('student')" />
+      Estudiante
+    </label>
+    <br />
+    <label>
+      <input type="checkbox" [checked]="isTutor" (change)="selectOnly('tutor')" />
+      Tutor
+    </label>
+  </div>
+
+  <button type="submit" class="btn-login">Crear cuenta</button>
+
+  <p>¿Ya tienes cuenta? <a routerLink="/login">Iniciar sesión</a></p>
+</form>
