@@ -3,11 +3,12 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common'; // 👈 Agregar esto
 import { AuthService } from '../../Services/auth.service';
 import { LoginRequest } from '../../Dtos/LoginRequest';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-login-form',
   standalone: true,
-  imports: [FormsModule, CommonModule], // 👈 Agregar aquí también
+  imports: [FormsModule, CommonModule, RouterModule], // 👈 Agregar aquí también
   templateUrl: './login-form.component.html',
   styleUrls: ['./login-form.component.css'],
   providers: [AuthService]

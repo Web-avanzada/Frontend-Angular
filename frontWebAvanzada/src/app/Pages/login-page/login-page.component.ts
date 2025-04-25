@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LoginFormComponent } from '../../Components/login-form/login-form.component'; // ajusta si la ruta es distinta
+import { Title } from '@angular/platform-browser';  // Importa el servicio Title
 
 @Component({
   selector: 'app-login-page',
@@ -9,8 +10,13 @@ import { LoginFormComponent } from '../../Components/login-form/login-form.compo
   templateUrl: './login-page.component.html',
   styleUrls: ['./login-page.component.css']
 })
-export class LoginPageComponent {
-  constructor() {
+export class LoginPageComponent implements OnInit {  // Implementa OnInit
+
+  constructor(private titleService: Title) {
     console.log('🟢 LoginPageComponent cargado');
+  }
+
+  ngOnInit(): void {
+    this.titleService.setTitle('StudyHub - Inicia sesión');  // Cambia el título aquí
   }
 }
