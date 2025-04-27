@@ -1,0 +1,21 @@
+<table class="reservation-table">
+    <thead>
+      <tr>
+        <th>Tutor</th>
+        <th>Fecha</th>
+        <th>Hora</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let reserva of reservas">
+        <td>{{ reserva.tutor }}</td>
+        <td>{{ reserva.fecha }}</td>
+        <td>{{ reserva.hora }}</td>
+        <td>
+          <button (click)="cancelarReserva(reserva.id)">Cancelar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  
