@@ -1,0 +1,59 @@
+<mat-sidenav #sidenav mode="side" [opened]="menuVisible" class="example-sidenav" fixedInViewport>
+    <mat-toolbar>Menú</mat-toolbar>
+
+    <mat-accordion multi>
+    <!-- Item 1: Datos Personales -->
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+        <mat-panel-title>
+            <mat-icon>person</mat-icon> Datos personales
+        </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-action-list>
+        <button mat-list-item (click)="seleccionarItem('usuarios')">Usuarios</button>
+        <button mat-list-item (click)="seleccionarItem('personales')">Personales</button>
+        <button mat-list-item (click)="seleccionarItem('seguridad')">Seguridad</button>
+        </mat-action-list>
+    </mat-expansion-panel>
+
+    <!-- Item 2: Reservas -->
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+        <mat-panel-title>
+            <mat-icon>event</mat-icon> Reservas
+        </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-action-list>
+        <button mat-list-item (click)="seleccionarItem('reservar')">Reservar</button>
+        <button mat-list-item (click)="seleccionarItem('cancelar')">Cancelar</button>
+        </mat-action-list>
+    </mat-expansion-panel>
+
+    <!-- Item 3: Tutorías -->
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+        <mat-panel-title>
+            <mat-icon>school</mat-icon> Tutorías
+        </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-action-list>
+        <button mat-list-item (click)="seleccionarItem('tematicas')">Temáticas</button>
+        <button mat-list-item (click)="seleccionarItem('sala')">Sala Online</button>
+        <button mat-list-item (click)="seleccionarItem('historicos')">Históricos</button>
+        </mat-action-list>
+    </mat-expansion-panel>
+
+    <!-- Item 4: Cerrar Sesión -->
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+        <mat-panel-title>
+            <mat-icon>logout</mat-icon> Cerrar Sesión
+        </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-action-list>
+        <button mat-list-item (click)="seleccionarItem('tipo')">Cambio de tipo</button>
+        <button mat-list-item (click)="seleccionarItem('cerrar')">Cerrar sesión</button>
+        </mat-action-list>
+    </mat-expansion-panel>
+    </mat-accordion>
+</mat-sidenav>

@@ -1,0 +1,16 @@
+import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+
+@Component({
+  selector: 'app-usuarios',
+  standalone: true,
+  imports: [CommonModule],
+  templateUrl: './usuarios.component.html',
+  styleUrls: ['./usuarios.component.css']
+})
+export class UsuariosComponent {
+  usuarios = [
+    { nombre: 'Juan Pérez', rol: 'Estudiante' },
+    { nombre: 'Laura Díaz', rol: 'Tutor' }
+  ];
+}

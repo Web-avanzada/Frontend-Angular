@@ -1,0 +1,5 @@
+/* Puedes dejarlo vacío o agregar estilos globales */
+:host {
+    display: block;
+    height: 100%;
+}

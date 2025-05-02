@@ -1,0 +1,9 @@
+.layout-container {
+    height: 100vh;
+    background-color: #ffffff;
+}
+
+.main-content {
+    background-color: #5306c7;
+    min-height: 100vh;
+}

@@ -1,0 +1,15 @@
+<mat-toolbar class="main-toolbar">
+    <button mat-icon-button (click)="onToggleSidebar()">
+    <mat-icon>menu</mat-icon>
+    </button>
+    <span class="example-spacer">StudyHub</span>
+    
+    <span class="example-spacer"></span>
+    <mat-menu #profileMenu="matMenu">
+    <button mat-menu-item (click)="verPerfil()">Perfil</button>
+    <button mat-menu-item (click)="configuracion()">Configuración</button>
+    </mat-menu>
+    <button mat-icon-button [matMenuTriggerFor]="profileMenu">
+    <mat-icon>account_circle</mat-icon>
+    </button>
+</mat-toolbar>
