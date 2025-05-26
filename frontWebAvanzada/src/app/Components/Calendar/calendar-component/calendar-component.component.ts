@@ -10,34 +10,32 @@ import { ButtonModule } from 'primeng/button';
 import { Toast } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 
-
-
 @Component({
   selector: 'app-calendar-component',
   standalone: true,
-  imports: [CommonModule, TableModule,ButtonModule,Toast],
-  providers:[MessageService],
+  imports: [CommonModule, TableModule, ButtonModule, Toast],
+  providers: [MessageService],
   templateUrl: './calendar-component.component.html',
-styleUrls: ['./calendar-component.component.css'],
- schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  styleUrls: ['./calendar-component.component.css'],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class CalendarComponentComponent implements OnInit {
   days = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'];
 
-  
   hours = Array.from({ length: 19 }, (_, i) => {
     const hour = i + 6;
     return `${hour.toString().padStart(2, '0')}:00`;
   });
 
   activeSlots: Record<string, string[]> = {};
-  userProfilesId = 0; 
-  baseDate = new Date('2025-06-02');
+  userProfilesId = 0;
+  baseDate = new Date();
 
-  constructor(private userScheduleService: UserScheduleService,private messageService: MessageService) {}
-
+  constructor(private userScheduleService: UserScheduleService, private messageService: MessageService) {}
 
   ngOnInit(): void {
+    this.baseDate = this.getMonday(new Date());
+
     const token = localStorage.getItem('token');
     if (token) {
       const decoded = jwtDecode<JwtPayload>(token);
@@ -68,6 +66,8 @@ export class CalendarComponentComponent implements OnInit {
 
   private getDateFromDay(day: string): string {
     const dayIndex = this.days.indexOf(day);
+    if (dayIndex === -1) return '';
+
     const date = new Date(this.baseDate);
     date.setDate(this.baseDate.getDate() + dayIndex);
     return date.toISOString().split('T')[0];
@@ -95,30 +95,36 @@ export class CalendarComponentComponent implements OnInit {
     }
 
     console.log('Lista a enviar:', payload);
-this.userScheduleService.saveScheduleBulk(payload).subscribe({
-  next: response => {
-    console.log('Respuesta del backend:', response);
+    this.userScheduleService.saveScheduleBulk(payload).subscribe({
+      next: response => {
+        console.log('Respuesta del backend:', response);
 
-this.messageService.add({ 
-  severity: 'success',    
-  summary: 'Success', 
-  detail: 'Horarios guardados correctamente', 
-  life: 3000 
-});
-   
-  },
-  error: error => {
-    console.error('Error al guardar horarios:', error);
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Success',
+          detail: 'Horarios guardados correctamente',
+          life: 3000
+        });
+      },
+      error: error => {
+        console.error('Error al guardar horarios:', error);
 
-this.messageService.add({ 
-  severity: 'error',      
-  summary: 'Error', 
-  detail: 'Error al guardar los horarios', 
-  life: 3000 
-});
-
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: 'Error al guardar los horarios',
+          life: 3000
+        });
+      }
+    });
   }
-});
 
+  getMonday(date: Date): Date {
+    const day = date.getDay(); 
+    const diff = (day === 0 ? -6 : 1) - day; 
+    const monday = new Date(date);
+    monday.setDate(date.getDate() + diff);
+    monday.setHours(0, 0, 0, 0);
+    return monday;
   }
 }
