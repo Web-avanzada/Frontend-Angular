@@ -1,0 +1,23 @@
+<div class="schedule-container">
+  <table class="schedule-table">
+    <thead>
+      <tr>
+        <th>Hora</th>
+        <th *ngFor="let day of days">{{ day }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let hour of hours">
+        <td>{{ hour }}</td>
+        <td *ngFor="let day of days"
+            [ngClass]="{'active': isActive(day, hour), 'inactive': !isActive(day, hour)}"
+            (click)="toggleSlot(day, hour)">
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="button-container">
+    <button (click)="showSelected()">Guardar</button>
+  </div>
+</div>

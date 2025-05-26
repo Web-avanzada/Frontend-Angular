@@ -1,0 +1,101 @@
+import { CommonModule } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
+import { TableModule } from 'primeng/table';
+import { UserSchedule } from '../../../Models/UserSchedule';
+import { JwtPayload } from '../../../Models/JwtPayload';
+import { jwtDecode } from 'jwt-decode';
+import { UserScheduleService } from '../../../Services/user-schedule.service';
+
+@Component({
+  selector: 'app-calendar-component',
+  standalone: true,
+  imports: [CommonModule, TableModule],
+  templateUrl: './calendar-component.component.html',
+  styleUrl: './calendar-component.component.css'
+})
+export class CalendarComponentComponent implements OnInit {
+  days = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'];
+
+  hours = Array.from({ length: 19 }, (_, i) => {
+    const hour = i + 6;
+    return `${hour.toString().padStart(2, '0')}:00`;
+  });
+
+  activeSlots: Record<string, string[]> = {};
+  userProfilesId = 0; 
+  baseDate = new Date('2025-06-02');
+
+  constructor(private userScheduleService: UserScheduleService) {}
+
+
+  ngOnInit(): void {
+    const token = localStorage.getItem('token');
+    if (token) {
+      const decoded = jwtDecode<JwtPayload>(token);
+      this.userProfilesId = parseInt(decoded.UserProfilesId, 10);
+      console.log('UserProfilesId from token:', this.userProfilesId);
+    }
+  }
+
+  toggleSlot(day: string, hour: string): void {
+    if (!this.activeSlots[day]) {
+      this.activeSlots[day] = [hour];
+    } else {
+      const index = this.activeSlots[day].indexOf(hour);
+      if (index > -1) {
+        this.activeSlots[day].splice(index, 1);
+        if (this.activeSlots[day].length === 0) {
+          delete this.activeSlots[day];
+        }
+      } else {
+        this.activeSlots[day].push(hour);
+      }
+    }
+  }
+
+  isActive(day: string, hour: string): boolean {
+    return this.activeSlots[day]?.includes(hour) ?? false;
+  }
+
+  private getDateFromDay(day: string): string {
+    const dayIndex = this.days.indexOf(day);
+    const date = new Date(this.baseDate);
+    date.setDate(this.baseDate.getDate() + dayIndex);
+    return date.toISOString().split('T')[0];
+  }
+
+  showSelected(): void {
+    const payload: UserSchedule[] = [];
+
+    for (const [day, hours] of Object.entries(this.activeSlots)) {
+      const date = this.getDateFromDay(day);
+
+      for (const hour of hours) {
+        const [h] = hour.split(':').map(Number);
+        const startTime = `${hour}:00`;
+        const endTime = `${(h + 1).toString().padStart(2, '0')}:00:00`;
+
+        payload.push({
+          UserScheduleId: 0,
+          UserProfilesId: this.userProfilesId,
+          Date: date,
+          StartTime: startTime,
+          EndTime: endTime
+        });
+      }
+    }
+
+    console.log('Lista a enviar:', payload);
+
+     this.userScheduleService.saveScheduleBulk(payload).subscribe({
+    next: response => {
+      console.log('Respuesta del backend:', response);
+      alert('Horarios guardados correctamente');
+    },
+    error: error => {
+      console.error('Error al guardar horarios:', error);
+      alert('Error al guardar los horarios.');
+    }
+  });
+  }
+}

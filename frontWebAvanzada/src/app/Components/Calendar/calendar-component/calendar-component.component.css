@@ -1,0 +1,17 @@
+
+.schedule-container {
+    width: 100%;
+    overflow: auto;
+  }
+  
+  .schedule-table td {
+    text-align: center;
+    padding: 8px;
+    width: 80px;
+    background-color: #3B82F6;
+    color: white;
+  }
+  
+  .schedule-table td.active {
+    background-color: #F97316;
+  }
