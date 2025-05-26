@@ -12,6 +12,35 @@
     color: white;
   }
   
+
+
   .schedule-table td.active {
-    background-color: #F97316;
-  }
+  background-color:  #F97316;
+  cursor: pointer;
+}
+
+.schedule-table td.inactive {
+  background-color: #3B82F6;
+  cursor: pointer;
+}
+.guardar-btn {
+  background-color: #28a745; /* Verde */
+  color: white;
+  padding: 12px 24px;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.guardar-btn:hover {
+  background-color: #218838;
+  transform: scale(1.03);
+}
+
+.guardar-btn:active {
+  background-color: #1e7e34;
+  transform: scale(0.97);
+}

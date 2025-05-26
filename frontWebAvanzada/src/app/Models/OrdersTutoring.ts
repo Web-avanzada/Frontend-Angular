@@ -1,4 +1,4 @@
-class OrdersTutoring {
+export class OrdersTutoring {
     ordertutoring_id: number = 0;
     ordertutoring_name: string = "";
     ordertutoring_detail: string = "";

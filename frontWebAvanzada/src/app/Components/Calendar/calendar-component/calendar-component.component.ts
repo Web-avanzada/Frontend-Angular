@@ -1,21 +1,30 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
 import { TableModule } from 'primeng/table';
 import { UserSchedule } from '../../../Models/UserSchedule';
 import { JwtPayload } from '../../../Models/JwtPayload';
 import { jwtDecode } from 'jwt-decode';
 import { UserScheduleService } from '../../../Services/user-schedule.service';
+import { ButtonModule } from 'primeng/button';
+
+import { Toast } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
+
+
 
 @Component({
   selector: 'app-calendar-component',
   standalone: true,
-  imports: [CommonModule, TableModule],
+  imports: [CommonModule, TableModule,ButtonModule,Toast],
+  providers:[MessageService],
   templateUrl: './calendar-component.component.html',
-  styleUrl: './calendar-component.component.css'
+styleUrls: ['./calendar-component.component.css'],
+ schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class CalendarComponentComponent implements OnInit {
   days = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'];
 
+  
   hours = Array.from({ length: 19 }, (_, i) => {
     const hour = i + 6;
     return `${hour.toString().padStart(2, '0')}:00`;
@@ -25,7 +34,7 @@ export class CalendarComponentComponent implements OnInit {
   userProfilesId = 0; 
   baseDate = new Date('2025-06-02');
 
-  constructor(private userScheduleService: UserScheduleService) {}
+  constructor(private userScheduleService: UserScheduleService,private messageService: MessageService) {}
 
 
   ngOnInit(): void {
@@ -86,16 +95,30 @@ export class CalendarComponentComponent implements OnInit {
     }
 
     console.log('Lista a enviar:', payload);
+this.userScheduleService.saveScheduleBulk(payload).subscribe({
+  next: response => {
+    console.log('Respuesta del backend:', response);
 
-     this.userScheduleService.saveScheduleBulk(payload).subscribe({
-    next: response => {
-      console.log('Respuesta del backend:', response);
-      alert('Horarios guardados correctamente');
-    },
-    error: error => {
-      console.error('Error al guardar horarios:', error);
-      alert('Error al guardar los horarios.');
-    }
-  });
+this.messageService.add({ 
+  severity: 'success',    
+  summary: 'Success', 
+  detail: 'Horarios guardados correctamente', 
+  life: 3000 
+});
+   
+  },
+  error: error => {
+    console.error('Error al guardar horarios:', error);
+
+this.messageService.add({ 
+  severity: 'error',      
+  summary: 'Error', 
+  detail: 'Error al guardar los horarios', 
+  life: 3000 
+});
+
+  }
+});
+
   }
 }

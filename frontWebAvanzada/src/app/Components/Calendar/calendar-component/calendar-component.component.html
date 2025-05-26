@@ -1,23 +1,30 @@
-<div class="schedule-container">
-  <table class="schedule-table">
+
+<p-toast></p-toast>
+<div class="schedule-container" style="display: flex; flex-direction: column; align-items: center; margin-top: 20px;">
+
+  <table class="schedule-table" style="border-collapse: collapse; width: 80%; max-width: 900px; text-align: center;">
     <thead>
       <tr>
-        <th>Hora</th>
-        <th *ngFor="let day of days">{{ day }}</th>
+        <th style="border: 1px solid #ddd; padding: 8px;">Hora</th>
+        <th *ngFor="let day of days" style="border: 1px solid #ddd; padding: 8px;">{{ day }}</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let hour of hours">
-        <td>{{ hour }}</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">{{ hour }}</td>
         <td *ngFor="let day of days"
             [ngClass]="{'active': isActive(day, hour), 'inactive': !isActive(day, hour)}"
-            (click)="toggleSlot(day, hour)">
+            (click)="toggleSlot(day, hour)"
+            style="border: 1px solid #dddddd; padding: 8px; cursor: pointer;">
         </td>
       </tr>
     </tbody>
   </table>
 
-  <div class="button-container">
-    <button (click)="showSelected()">Guardar</button>
+  <div class="button-container" style="margin-top: 20px; width: 80%; max-width: 900px; text-align: center;">
+   <button class="guardar-btn" (click)="showSelected()">Guardar</button>
+
   </div>
+
 </div>
+
