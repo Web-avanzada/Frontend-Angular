@@ -1,35 +1,44 @@
-
 .schedule-container {
-    width: 100%;
-    overflow: auto;
-  }
-  
-  .schedule-table td {
-    text-align: center;
-    padding: 8px;
-    width: 80px;
-    background-color: #3B82F6;
-    color: white;
-  }
-  
+  width: 100%;
+  overflow: auto;
+  padding: 10px;
+}
 
+/* Reducimos el tamaño general de la tabla */
+.schedule-table {
+  width: 600px; /* más pequeño que el 100% */
+  margin: 0;
+}
 
-  .schedule-table td.active {
-  background-color:  #F97316;
+/* Celdas más compactas */
+.schedule-table td,
+.schedule-table th {
+  text-align: center;
+  padding: 6px;
+  width: 60px; /* más estrecho */
+  font-size: 14px; /* más pequeño */
+}
+
+/* Colores activos/inactivos */
+.schedule-table td.active {
+  background-color: #F97316;
   cursor: pointer;
 }
 
 .schedule-table td.inactive {
   background-color: #3B82F6;
   cursor: pointer;
-}
-.guardar-btn {
-  background-color: #28a745; /* Verde */
   color: white;
-  padding: 12px 24px;
-  font-size: 16px;
+}
+
+/* Botón de guardar */
+.guardar-btn {
+  background-color: #28a745;
+  color: white;
+  padding: 10px 20px;
+  font-size: 14px;
   border: none;
-  border-radius: 8px;
+  border-radius: 6px;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -43,4 +52,22 @@
 .guardar-btn:active {
   background-color: #1e7e34;
   transform: scale(0.97);
+}
+.schedule-title {
+  font-size: 32px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+  color: #1f2937; /* Gris oscuro elegante */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.button-container {
+  margin-top: 20px;
+  width: 80%;
+  max-width: 900px;
+  text-align: left; 
+  padding-left: 600px; 
 }
