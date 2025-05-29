@@ -1,0 +1,58 @@
+<form (ngSubmit)="login()" #form="ngForm">
+  <label for="userMail">Login</label>
+  <input
+    type="text"
+    [(ngModel)]="userMail"
+    name="userMail"
+    placeholder="Correo"
+    required
+  />
+
+  <label for="userPassword">Password</label>
+  <div class="password-field">
+    <input
+      [type]="showPassword ? 'text' : 'password'"
+      [(ngModel)]="userPassword"
+      name="userPassword"
+      placeholder="Contraseña"
+      required
+    />
+    <button type="button" (click)="showPassword = !showPassword">
+      {{ showPassword ? '🚫' : '👁️' }}
+    </button>
+  </div>
+
+  <div class="remember-forgot">
+    <div class="toggle-remember">
+      <label class="switch">
+        <input
+          type="checkbox"
+          [(ngModel)]="rememberMe"
+          name="rememberMe"
+        />
+        <span class="slider"></span>
+      </label>
+      <span>Remember me</span>
+    </div>
+    <a href="#">Forgot password?</a>
+  </div>
+
+  <button type="submit" class="btn-login">Sign in</button>
+
+  <div class="divider">or</div>
+
+  <button type="button" class="btn-google">
+    <img
+      src="assets/google-icon.png"
+      alt="Google icon"
+      class="google-icon"
+    />
+    Or sign in with Google
+  </button>
+
+  <p>Don’t have an account? <a routerLink="/register">Sign up now</a></p>
+</form>
+
+<!-- Para mostrar mensaje del login -->
+<p *ngIf="loginMessage" style="color: red; text-align: center;">{{ loginMessage }}</p>
+

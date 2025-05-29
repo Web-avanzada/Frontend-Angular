@@ -1,0 +1,38 @@
+.sidebar {
+  width: 250px;
+  background-color: #e7f8f7;
+  padding: 10px;
+  transition: width 0.3s ease;
+  min-height: 100vh;
+}
+
+.sidebar.closed {
+  width: 60px;
+  overflow: hidden;
+}
+
+.toggle-button {
+  cursor: pointer;
+  font-weight: bold;
+  padding: 10px;
+}
+
+.menu-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 10px;
+}
+
+.menu-list > li {
+  margin: 10px 0;
+  cursor: pointer;
+}
+
+.menu-list li ul {
+  margin-top: 5px;
+  padding-left: 15px;
+}
+
+.menu-list li ul li {
+  font-size: 14px;
+}

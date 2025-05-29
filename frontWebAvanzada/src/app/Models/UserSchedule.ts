@@ -1,7 +1,7 @@
-class UserSchedule {
-    userschedule_id: number = 0;
-    UserProfiles_id: number = 0;
-    userschedule_date: Date = new Date();
-    userschedule_starttime: Date = new Date();
-    userschedule_finishtime: Date =  new Date();
+export class UserSchedule {
+   UserScheduleId: number = 0;
+   UserProfilesId: number = 0;
+   Date : string ="";
+   StartTime : string ="";
+   EndTime: string ="";
   }

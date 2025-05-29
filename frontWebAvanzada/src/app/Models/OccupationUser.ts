@@ -1,5 +1,5 @@
-class OccupationUser {
-    occupationuser_id: number = 0;
-    UserProfiles_id: number = 0;
-    occupation_id: number = 0;
+export class OccupationUser {
+    OccupationTutorId  : number = 0;
+    UserProfilesId : number = 0;
+    OccupationId : number = 0;
   }

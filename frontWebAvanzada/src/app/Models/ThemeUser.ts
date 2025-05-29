@@ -1,5 +1,5 @@
-class ThemeUser {
-    themeuser_id: number = 0;
-    UserProfiles_id: number = 0;
-    theme_id: number = 0;
-  }
+export class ThemeUser {
+    ThemeStudentId  : number = 0;
+    UserProfilesId: number = 0;
+    ThemeId: number = 0;
+  } 

@@ -1,0 +1,47 @@
+.form-container {
+  margin: auto;
+  background-color: #e6f4fb;
+  padding: 30px;
+  border-radius: 10px;
+  width: 70%;
+  margin-top: 50px;
+}
+
+h2 {
+  text-align: center;
+  color: #0070c0;
+  margin-bottom: 30px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.full-width {
+  grid-column: span 2;
+}
+
+input, select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+button {
+  background-color: #2ecc71;
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
