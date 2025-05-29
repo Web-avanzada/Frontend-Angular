@@ -8,7 +8,7 @@ import { RegisterRequest } from '../Dtos/register-request';
   providedIn: 'root'
 })
 export class AuthService {
-  private UrlUserLogin: string = 'http://localhost:5074/userValidateLogin';
+  private UrlUserLogin: string = 'http://localhost:5074/api/Authenticate/validate-login';
   private UrlRegister: string = 'http://localhost:5074/api/User';
 
   constructor(private httpClient: HttpClient) {}

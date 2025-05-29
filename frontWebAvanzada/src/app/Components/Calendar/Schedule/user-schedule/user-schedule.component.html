@@ -1,0 +1,20 @@
+<div class="filter-bar">
+  <input type="date" [(ngModel)]="selectedDate" class="input" />
+  <button class="btn" (click)="searchByDate()">Buscar</button>
+</div>
+
+<div class="card-container">
+  <div *ngFor="let s of schedules" class="card">
+    <div class="card-header">
+      <img src="https://via.placeholder.com/50" class="avatar" />
+      <div>
+        <h3>Usuario #{{ s.UserProfilesId }}</h3>
+        <p>ID Horario: {{ s.UserScheduleId }}</p>
+      </div>
+    </div>
+    <div class="card-body">
+      <p><strong>Fecha:</strong> {{ s.Date }}</p>
+      <p><strong>Hora:</strong> {{ s.StartTime }} - {{ s.EndTime }}</p>
+    </div>
+  </div>
+</div>
