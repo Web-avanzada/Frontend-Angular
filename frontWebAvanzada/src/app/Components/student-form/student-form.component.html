@@ -1,0 +1,57 @@
+<div class="form-container">
+  <h2>Datos de Estudiante</h2>
+  <form (ngSubmit)="saveStudent()">
+    <div class="form-grid">
+      <div>
+        <label>Nombres</label>
+        <input type="text" [(ngModel)]="student.nombres" name="nombres" required />
+        <p>*Campo requerido</p>
+      </div>
+
+      <div>
+        <label>Apellidos</label>
+        <input type="text" [(ngModel)]="student.apellidos" name="apellidos" required />
+        <p>*Campo requerido</p>
+      </div>
+
+      <div>
+        <label>Dirección</label>
+        <input type="text" [(ngModel)]="student.direccion" name="direccion" required />
+        <p>*Campo requerido</p>
+      </div>
+
+      <div>
+        <label>Teléfono de contacto</label>
+        <input type="text" [(ngModel)]="student.telefono" name="telefono" required />
+        <p>*Campo requerido</p>
+      </div>
+
+      <div>
+        <label>Mail</label>
+        <input type="email" [(ngModel)]="student.mail" name="mail" required />
+        <p>*Campo requerido</p>
+      </div>
+
+      <div>
+        <label>Fecha Nacimiento</label>
+        <input type="date" [(ngModel)]="student.nacimiento" name="nacimiento" required />
+      </div>
+
+      <div class="full-width">
+        <label>Ocupación / Intereses</label>
+        <select [(ngModel)]="student.intereses" name="intereses" required>
+          <option value="" disabled selected>Selecciona una opción</option>
+          <option value="Programación">Programación</option>
+          <option value="Diseño">Diseño</option>
+          <option value="Negocios">Negocios</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="button-container">
+      <button type="submit">GUARDAR</button>
+    </div>
+
+    <p style="text-align: center; margin-top: 10px">{{ message }}</p>
+  </form>
+</div>

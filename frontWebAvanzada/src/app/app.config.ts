@@ -20,6 +20,13 @@ export const appConfig: ApplicationConfig = {
             (m) => m.RegisterPageComponent
           ),
       },
+      {
+        path: 'dashboard',
+        loadComponent: () =>
+          import('./Pages/dashboard/dashboard-page.component').then(
+            (m) => m.DashboardPageComponent
+          ),
+      },
     ]),
     provideHttpClient(),
     provideAnimations()  ,

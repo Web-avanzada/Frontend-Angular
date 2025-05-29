@@ -9,6 +9,8 @@ import { Observable } from 'rxjs';
 export class UserScheduleService {
  private readonly apiUrl = 'http://localhost:5074/api/UserSchedule'; 
 
+ idProfile:number=0;
+
   constructor(private http: HttpClient) {}
 
   saveScheduleBulk(schedules: UserSchedule[]): Observable<any> {

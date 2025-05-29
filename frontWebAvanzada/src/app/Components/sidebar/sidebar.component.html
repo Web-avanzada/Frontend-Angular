@@ -1,0 +1,49 @@
+<nav class="sidebar">
+  <ul class="menu">
+
+    <!-- DATOS PERSONALES -->
+    <li>
+      <div class="menu-title" (click)="toggleMenu('datos')">
+        Datos Personales
+      </div>
+      <ul *ngIf="activeMenu === 'datos'" class="submenu">
+        <li><a routerLink="/usuarios">Usuarios</a></li>
+        <li><a routerLink="/personales">Personales</a></li>
+        <li><a routerLink="/seguridad">Seguridad</a></li>
+      </ul>
+    </li>
+
+    <!-- RESERVAS -->
+    <li>
+      <div class="menu-title" (click)="toggleMenu('reservas')">
+        Reservas
+      </div>
+      <ul *ngIf="activeMenu === 'reservas'" class="submenu">
+        <li><a routerLink="/reservar">Reservar</a></li>
+        <li><a routerLink="/cancelar">Cancelar</a></li>
+      </ul>
+    </li>
+
+    <!-- TUTORÍAS -->
+    <li>
+      <div class="menu-title" (click)="toggleMenu('tutorias')">
+        Tutorías
+      </div>
+      <ul *ngIf="activeMenu === 'tutorias'" class="submenu">
+        <li><a routerLink="/ver-tutorias">Ver Tutorías</a></li>
+        <li><a routerLink="/asignar-tutoria">Asignar Tutoría</a></li>
+      </ul>
+    </li>
+
+    <!-- CERRAR SESIÓN -->
+    <li>
+      <div class="menu-title" (click)="toggleMenu('cerrar')">
+        Cerrar Sesión
+      </div>
+      <ul *ngIf="activeMenu === 'cerrar'" class="submenu">
+        <li><a routerLink="/login">Salir</a></li>
+      </ul>
+    </li>
+
+  </ul>
+</nav>
