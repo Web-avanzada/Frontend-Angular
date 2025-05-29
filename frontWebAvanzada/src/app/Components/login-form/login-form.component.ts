@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, NO_ERRORS_SCHEMA } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common'; // 👈 Agregar esto
 import { AuthService } from '../../Services/auth.service';
 import { LoginRequest } from '../../Dtos/LoginRequest';
 import { RouterModule } from '@angular/router';
+import { CalendarComponentComponent } from '../Calendar/calendar-component/calendar-component.component';
 
 @Component({
   selector: 'app-login-form',
@@ -11,6 +12,7 @@ import { RouterModule } from '@angular/router';
   imports: [FormsModule, CommonModule, RouterModule], // 👈 Agregar aquí también
   templateUrl: './login-form.component.html',
   styleUrls: ['./login-form.component.css'],
+  schemas:[NO_ERRORS_SCHEMA],
   providers: [AuthService]
 })
 export class LoginFormComponent {
@@ -33,6 +35,7 @@ export class LoginFormComponent {
     this.authService.login(loginData).subscribe({
       next: (response) => {
         this.loginMessage = '✅ Inicio de sesión exitoso.';
+         localStorage.setItem('token',response);
         console.log(response);
       },
       error: (err) => {
