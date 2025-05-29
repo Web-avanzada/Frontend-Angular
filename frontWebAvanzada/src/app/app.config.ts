@@ -9,11 +9,7 @@ import { UserScheduleComponent } from './Components/Calendar/Schedule/user-sched
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter([
-<<<<<<< HEAD
-      { path: '', redirectTo: 'login', pathMatch: 'full' },
-=======
       { path: '', redirectTo: 'login', pathMatch: 'full' }, 
->>>>>>> development
       { path: 'login', component: LoginPageComponent },
       { path: 'calendarTutor', component: CalendarComponentComponent },
        { path: 'scheduleTutor', component: UserScheduleComponent },

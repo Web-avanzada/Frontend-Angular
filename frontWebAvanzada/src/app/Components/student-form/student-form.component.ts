@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { UserProfileService } from '../../Services/user-profile.service';
 import { UserProfileRequest } from '../../Dtos/user-profile-request';
+import { UserScheduleService } from '../../Services/user-schedule.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-student-form',
@@ -24,7 +26,8 @@ export class StudentFormComponent {
 
   message = '';
 
-  constructor(private userProfileService: UserProfileService) {}
+  constructor(private router: Router,private userProfileService: UserProfileService,private scheduleService: UserScheduleService) { }
+
 
   saveStudent() {
     const request: UserProfileRequest = {
@@ -42,8 +45,21 @@ export class StudentFormComponent {
     };
 
     this.userProfileService.createUserProfile(request).subscribe({
-      next: () => this.message = '✅ Datos guardados correctamente.',
-      error: () => this.message = '❌ Error al guardar los datos.'
+      next: (response) => {
+
+
+        const idProfile = response.userProfilesId;
+
+        this.scheduleService.idProfile = idProfile;
+        this.message = `✅ Datos guardados correctamente. ID Perfil: ${idProfile}`;
+        console.log('ID del perfil creado:', idProfile);
+        this.router.navigate(['/calendarTutor']);
+
+
+      },
+      error: () => {
+        this.message = '❌ Error al guardar los datos.';
+      }
     });
   }
 }

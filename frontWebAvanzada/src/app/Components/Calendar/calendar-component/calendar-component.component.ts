@@ -9,11 +9,12 @@ import { ButtonModule } from 'primeng/button';
 
 import { Toast } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
+import { SidebarComponent } from '../../sidebar/sidebar.component';
 
 @Component({
   selector: 'app-calendar-component',
   standalone: true,
-  imports: [CommonModule, TableModule, ButtonModule, Toast],
+  imports: [CommonModule, TableModule, ButtonModule, Toast,SidebarComponent],
   providers: [MessageService],
   templateUrl: './calendar-component.component.html',
   styleUrls: ['./calendar-component.component.css'],
@@ -39,8 +40,8 @@ export class CalendarComponentComponent implements OnInit {
     const token = localStorage.getItem('token');
     if (token) {
       const decoded = jwtDecode<JwtPayload>(token);
-      this.userProfilesId = parseInt(decoded.UserProfilesId, 10);
-      console.log('UserProfilesId from token:', this.userProfilesId);
+      this.userProfilesId = this.userScheduleService.idProfile;
+      console.log('UserProfilesId from service:', this.userProfilesId);
     }
   }
 

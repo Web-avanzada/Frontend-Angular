@@ -23,6 +23,8 @@ export class UserScheduleComponent {
 selectedDate: string = '';
   schedules: UserSchedule[] = [];
 
+  idProfileC:number=0;
+
   constructor(private scheduleService: UserScheduleService) {}
 searchByDate() {
   if (!this.selectedDate) return;
